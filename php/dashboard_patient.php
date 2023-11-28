@@ -18,7 +18,7 @@ $result_patient_info = $db->query($sql_patient_info); // Change $conn to $db
 if ($result_patient_info->num_rows > 0) {
     $row = $result_patient_info->fetch_assoc();
     // Display patient information here
-    echo "Patient Name: " . $row["Name"];
+    echo "Patient Name: " . $row["FirstName"]," " . $row["LastName"];
     // Add more details as needed
 } else {
     // Patient not found

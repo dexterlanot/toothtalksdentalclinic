@@ -22,7 +22,7 @@
   <nav>
     <a href="Home.php"><img src="../assets/logo.png" /></a>
     <div class="navigation">
-      <ul class="animate__animated animate__slideInRight">
+      <ul>
         <li><a href="#home"> Home </a></li>
         <li><a href="#services"> Services </a></li>
         <li><a href="#about"> About </a></li>

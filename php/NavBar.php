@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <nav>
     <a href="../public/Home.php"><img src="../assets/logo.png" /></a>
     <div class="navigation">
-      <ul class="animate__animated animate__slideInRight">
+      <ul>
         <li><a href="../public/Home.php"> Home </a></li>
         <li><a href="../public/Home.php#services"> Services </a></li>
         <li><a href="../public/Home.php#about"> About </a></li>

@@ -42,12 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Dentist login failed
-            echo "Invalid email or password for dentist.";
+            $error_message = "Invalid email or password for patient.";
         }
     }
 
-    // Email not found
-    echo "User with this email does not exist.";
+    // // Email not found
+    $error_message = "Incorrect email or password.";
 }
 ?>
 
@@ -69,10 +69,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <div class="content-img">
-    </div>
-    <div class="login-container"></div>
-    <div class="container">
-        <h2>Login</h2>
+        </div>
+        <div class="login-container"></div>
+        <div class="container">
+            <h2>Login</h2>
+            <div class="error-message"><?php echo isset($error_message) ? $error_message : ''; ?></div>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div class="input-box">
             <label for="Email"> Email </label>
@@ -86,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <input type="submit" value="Login">
           </div>
           <div class="text">
-          <p> Don't have an account? <a href="./login.php"> Create Account </a> </p>
+          <p> Don't have an account? <a href="./signup.php"> Create Account </a> </p>
         </div>
         </form>
         </div>

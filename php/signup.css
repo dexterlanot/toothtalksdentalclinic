@@ -122,10 +122,10 @@ body {
 
 .button {
     margin: 15px 0;
-    cursor: pointer;
 }
 
 .button input {
+    cursor: pointer;
     width: 100%;
     padding: 10px;
     display: block;
