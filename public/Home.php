@@ -10,57 +10,25 @@
   <link rel="icon" type="image/x-icon" href="../assets/client-logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/ea307fd923.js" crossorigin="anonymous"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   <title>Tooth Talks Dental Clinic</title>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const navLinksContainer = document.querySelector(".navigation");
-
-      navLinksContainer.addEventListener("click", function(event) {
-        if (event.target.tagName === "A") {
-          document.querySelectorAll("nav .navigation ul li a").forEach((link) => {
-            link.classList.remove("active");
-          });
-          event.target.classList.add("active");
-        }
-      });
-    });
-  </script>
-  <script>
-    
-    document.addEventListener("DOMContentLoaded", function() {
-      const navLinksContainer = document.querySelector(".navigation");
-      const menuToggle = document.querySelector(".menu-toggle");
-
-      menuToggle.addEventListener("click", function() {
-        navLinksContainer.classList.toggle("open");
-      });
-
-      navLinksContainer.addEventListener("click", function(event) {
-        if (event.target.tagName === "A") {
-          document.querySelectorAll("nav .navigation ul").forEach((link) => {
-            link.classList.remove("active");
-          });
-          event.target.classList.add("active");
-          navLinksContainer.classList.remove("open");
-        }
-      });
-    });
-  </script>
-
-
+  <?php include 'navbar.php'; ?>
 </head>
 
 <body>
   <nav>
     <a href="Home.php"><img src="../assets/logo.png" /></a>
     <div class="navigation">
-      <ul>
+      <ul class="animate__animated animate__slideInRight">
         <li><a href="#home"> Home </a></li>
         <li><a href="#services"> Services </a></li>
         <li><a href="#about"> About </a></li>
         <li><a href="#contact"> Contact </a></li>
         <li>
-          <a href="../php/signup_patient.php">
+          <a href="../php/signup.php">
             <span class="signup">Sign Up</span>
           </a>
         </li>

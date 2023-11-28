@@ -1,0 +1,136 @@
+:root {
+  --white: #ffff;
+  --darkbluegreen: #135366;
+  --bluegreen: #0b6078;
+  --grey: #dbdbdb;
+  --lightgrey: #ebebeb;
+  --darkgrey: #5d5d5d;
+  --black: #000000;
+  --red: #ff8080;
+  --darkred: #b30000;
+  --black-light-color: #707070;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+}
+
+.sign-up-container {
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.content-img {
+    display: flex;
+    width: 50%;
+    height: 100vh;
+    flex-shrink: 0;
+    background-image: linear-gradient(to right, rgba(11, 96, 120, 0.9), rgba(19, 83, 102, 0.2)),url("../assets/landing2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container {
+    max-width: 650px;
+    padding: 28px;
+    margin: 0 28px;
+}
+
+.container h2 {
+    margin-top: 10%;
+    font-size: 26px;
+    font-weight: 600;
+    text-align: left;
+    color: var(--darkbluegreen);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey);
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* padding: 20px 0; */
+}
+
+.input-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+
+.input-box label {
+    padding: 2px;
+    width: 95%;
+    color: var(--black-light-color);
+    font-weight: 500;
+    /* margin: 5px 0; */
+}
+
+.input-box input {
+    height: 40px;
+    width: 95%;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid var(--black-light-color);
+}
+
+
+.gender-option {
+    color: var(--grey);
+    display: flex;
+    align-items: center;
+}
+
+.gender-option label {
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+.gender-option input {
+    cursor: pointer;
+    margin-right: 5px; /* Add some spacing between radio buttons */
+}
+
+.container .text {
+    font-size: 0.8rem;
+    color: var(--black-light-color);
+}
+
+.container .text a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--bluegreen);
+}
+
+.button {
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.button input {
+    width: 100%;
+    padding: 10px;
+    display: block;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--bluegreen);
+}
