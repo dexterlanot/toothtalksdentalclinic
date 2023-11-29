@@ -1,0 +1,238 @@
+:root {
+  --white: #ffff;
+  --darkbluegreen: #135366;
+  --bluegreen: #0b6078;
+  --grey: #dbdbdb;
+  --lightgrey: #ebebeb;
+  --darkgrey: #5d5d5d;
+  --black: #000000;
+  --red: #ff8080;
+  --darkred: #b30000;
+  --black-light-color: #707070;
+  --yellow: #FBDB65;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+}
+
+/* body {
+} */
+
+section {
+  width: 100%;
+  height: 100vh;
+  transition: all 0.5s;
+}
+
+.dash_content {
+  flex: 1;
+  padding: 20px 0 0 50px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.title .text {
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 10px;
+  color: var(--bluegreen);
+}
+
+.appointment_title, .add_appointment_title {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.appointment_title i, .add_appointment_title i {
+  margin-left: 10px;
+  padding: 5px 5px;
+  border-radius: 20px;
+  background-color: var(--darkbluegreen);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+
+.appointment_title .text, .add_appointment_title .text {
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 10px;
+  color: var(--black);
+}
+
+
+
+.appointment_section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.appointment_table {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.calendar {
+  flex: 1;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  font-size: 14px;
+  font-weight: 400;
+  border: none;
+  padding: 5px;
+  text-align: left;
+}
+
+td {
+  border-bottom: 2px solid var(--grey);
+}
+
+th {
+  align-items: center;
+  color: var(--white);
+  background-color: var(--bluegreen);
+  border-bottom: 2px solid var(--darkbluegreen);
+}
+
+.appointment_section {
+  display: flex;
+  gap: 20px;
+}
+
+.appointment_table,
+.form_section {
+  flex: 1;
+}
+
+.input-box {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 15px;
+}
+
+.input-box label {
+  padding-bottom: 5px;
+  width: 95%;
+  color: var(--black);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.input-box input {
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid var(--black-light-color);
+}
+
+.input-box select {
+  height: 40px;
+  width: 93.5%;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid var(--black-light-color);
+}
+
+.date-time-container {
+  display: flex;
+  gap: 5px;
+}
+
+.date-time-container .input-box {
+  flex: 1;
+}
+
+.date-time-container label {
+  width: 90%;
+}
+
+.date-time-container input {
+  width: 80%;
+}
+
+button.disabled {
+  opacity: 0.5; /* Adjust the opacity to visually indicate the button is disabled */
+  cursor: not-allowed; /* Change cursor to not-allowed to indicate it's not clickable */
+  padding: 2px 8px;
+  border: none;
+  outline: none;
+  background-color: var(--red);
+}
+
+/* Add styling for pagination */
+.pagination {
+  position: fixed;
+  top: 48%;
+  left: 40px;
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 0;
+
+}
+
+.pagination a {
+  font-size: 12px;
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 4px;
+  text-decoration: none;
+  color: #000;
+  border-radius: 4px;
+}
+
+.pagination a.active {
+  background-color: var(--bluegreen);
+  color: white;
+}
+
+
+.button {
+  margin: 15px 0;
+}
+
+.button input {
+  cursor: pointer;
+  padding: 10px 15px;
+  display: block;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--bluegreen);
+}
+
+.edit-button, .delete-button {
+  cursor: pointer;
+  padding: 2px 8px;
+  border: none;
+  outline: none;
+}
+
+.edit-button{
+  background-color: var(--yellow);
+}
+
+.delete-button {
+  margin-left: 5px;
+  background-color: var(--red);
+}

@@ -1,0 +1,133 @@
+:root {
+  --white: #ffff;
+  --darkbluegreen: #135366;
+  --bluegreen: #0b6078;
+  --grey: #dbdbdb;
+  --lightgrey: #ebebeb;
+  --darkgrey: #5d5d5d;
+  --black: #000000;
+  --red: #ff8080;
+  --darkred: #b30000;
+  --black-light-color: #707070;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    /* background-color: var(--bluegreen); */
+}
+
+.sidebar {
+    position: fixed;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: var(--white);
+    transition: all 0.5s ease;
+    z-index: 1000;
+    /* border-right: 1px solid var(--black-light-color); */
+}
+.sidebar header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar header img {
+    width: 50%;
+    margin: 10px auto;
+    display: block;
+}
+
+.sidebar ul {
+    margin-top: 10px;
+}
+
+.sidebar ul li a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 2.5;
+    font-size: 15px;
+    color: var(--black-light-color);
+    padding-left: 30px;
+    box-sizing: border-box;
+    transition: 0.4s ease;
+    border-bottom: 3px solid var(--white);
+}
+
+.sidebar ul li a:hover {
+   background-color: var(--bluegreen);
+    color: var(--white);
+    border-bottom: 3px solid var(--darkbluegreen);
+}
+
+
+
+.sidebar ul a i {
+    margin-right: 10px;
+}
+
+ #check {
+    display: none;
+ }
+
+ label #btn, label #cancel {
+    position: absolute;
+    cursor: pointer;
+    border-radius: 5px;
+ }
+
+ label #btn {
+    left: 20px;
+    top: 20px;
+    font-size: 20px;
+    color: var(--white);
+    padding:0 4px;
+    transition: all 0.1s;
+    background-color: var(--bluegreen);
+ }
+
+ label #cancel {
+    z-index: 1111;
+    left: -155px;
+    top: 10px;
+    font-size: 20px;
+    color: var(--bluegreen);
+    padding: 0 2px;
+    transition: all 0.5s;
+ }
+
+ #check:checked ~ .sidebar {
+    left: 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+ }
+ 
+ #check:checked ~ label #btn {
+    left: 250;
+    opacity: 0;
+    pointer-events: none;
+ }
+
+ #check:checked ~ label #cancel {
+    left: 200px;
+ }
+ 
+ /* #check:checked ~ section {
+    margin-left: 200px;
+ } */
+/* 
+ section {
+    background: url(../assets/landing.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    transition: all .5s;
+ } */
