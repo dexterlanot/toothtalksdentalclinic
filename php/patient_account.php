@@ -37,11 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitAppointment"])) 
     <meta charset="UTF-8">
     <title>Patient Dashboard</title>
     <link rel="stylesheet" href="./index.css">
-    
+
     <link rel="icon" type="image/x-icon" href="../assets/client-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- Add these lines for the latest FullCalendar -->
@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitAppointment"])) 
                 </span>
             </div>
             <div class="appointment_section">
-                <div class="appointment_table">
+                <div class="appointment_table ">
                     <div class="appointment_title">
                         <i class="uil uil-schedule"></i>
                         <span class="text"> Appointments </span>
@@ -145,21 +145,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitAppointment"])) 
                             $offset = ($page - 1) * $appointmentsPerPage;
 
                             // Fetch and display appointments for the current page
-                            $sql_appointments = "SELECT * FROM appointment WHERE PatientID=$user_id LIMIT $offset, $appointmentsPerPage";
+                            $sql_appointments = "SELECT * FROM appointment WHERE PatientID=$user_id ORDER BY Date DESC, TIME_FORMAT(Time, '%h:%i %p') DESC LIMIT $offset, $appointmentsPerPage";
                             $result_appointments = $db->query($sql_appointments);
 
                             if ($result_appointments !== false && $result_appointments->num_rows > 0) {
                                 while ($row_appointment = $result_appointments->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . $row_appointment["TreatmentType"] . "</td>";
-                                    echo "<td>" . $row_appointment["Date"] . "</td>";
-                                    echo "<td>" . $row_appointment["Time"] . "</td>";
+                                    echo "<td>" . date("F j, Y", strtotime($row_appointment["Date"])) . "</td>";
+                                    echo "<td>" . date("h:i A", strtotime($row_appointment["Time"])) . "</td>";
                                     echo "<td>" . $row_appointment["Status"] . "</td>";
                                     echo "<td>";
 
-                                    if ($row_appointment["Status"] !== "Cancelled") {
+                                    if ($row_appointment["Status"] !== "Cancelled" && "Approved") {
                                         // Only show buttons if the status is not "Cancelled"
-                                        echo "<button class='edit-button' data-appointment-id='" . $row_appointment["AppointmentID"] . "'>Edit</button>";
+                                        // Inside the while loop where you display appointments
+                                        // echo "<button class='edit-button' data-appointment-id='" . $row_appointment["AppointmentID"] . "' data-treatment-type='" . $row_appointment["TreatmentType"] . "' data-date='" . $row_appointment["Date"] . "' data-time='" . $row_appointment["Time"] . "'>Edit</button>";
                                         echo "<button class='delete-button' data-appointment-id='" . $row_appointment["AppointmentID"] . "'>Cancel</button>";
                                     } else {
                                         // If status is "Cancelled," disable the button and add a class for styling
@@ -234,6 +235,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitAppointment"])) 
                             <input type="submit" name="submitAppointment" value="Add Appointment">
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="transactions">
+
+                <div class="transaction_table">
+                    <div class="transaction_title">
+                        <i class="uil uil-money-bill"></i>
+                        <span class="text"> Transactions </span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Treatment</th>
+                                <th>Amount To Be Paid</th>
+                                <th>Amount Paid</th>
+                                <th>Payment Method</th>
+                                <th>Reference Number</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $transactionsPerPage = 5;
+
+                            // Calculate total number of pages for transactions
+                            $sqlTransactionCount = "SELECT COUNT(*) as total FROM transaction WHERE PatientID=$user_id";
+                            $resultTransactionCount = $db->query($sqlTransactionCount);
+                            $rowTransactionCount = $resultTransactionCount->fetch_assoc();
+                            $totalTransactions = $rowTransactionCount['total'];
+                            $totalTransactionPages = ceil($totalTransactions / $transactionsPerPage);
+
+                            // Current transaction page (default to 1 if not set)
+                            $transactionPage = isset($_GET['transactionPage']) ? $_GET['transactionPage'] : 1;
+
+                            // Calculate the offset for the SQL query for transactions
+                            $transactionOffset = ($transactionPage - 1) * $transactionsPerPage;
+
+                            // Fetch and display transactions for the patient
+                            $sql_transactions = "SELECT * FROM transaction WHERE PatientID=$user_id";
+                            $result_transactions = $db->query($sql_transactions);
+
+                            if ($result_transactions !== false && $result_transactions->num_rows > 0) {
+                                while ($row_transaction = $result_transactions->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row_transaction["Treatment"] . "</td>";
+                                    echo "<td>" . $row_transaction["AmountToBePaid"] . "</td>";
+                                    echo "<td>" . $row_transaction["AmountPaid"] . "</td>";
+                                    echo "<td>" . $row_transaction["PaymentMethod"] . "</td>";
+                                    echo "<td>" . $row_transaction["ReferenceNumber"] . "</td>";
+                                    echo "<td>" . $row_transaction["Status"] . "</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='6'>No transactions found.</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                    <?php
+                    echo "<div class='pagination'>";
+                    for ($i = 1; $i <= $totalTransactionPages; $i++) {
+                        $activeClass = ($i == $transactionPage) ? 'active' : '';
+                        echo "<a href='?transactionPage=$i' class='$activeClass'>$i</a>";
+                    }
+                    echo "</div>";
+                    ?>
                 </div>
             </div>
         </div>

@@ -5,10 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="index.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" type="image/x-icon" href="../assets/client-logo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/ea307fd923.js" crossorigin="anonymous"></script>
   <link
     rel="stylesheet"
@@ -41,10 +41,10 @@
   </nav>
   <!-- HOME -->
   <section id="home">
-    <h2>TOOTH TALKS DENTAL CLINIC</h2>
-    <p>Healthy teeth conversations</p>
+    <h2 class="animate__animated animate__fadeInDown">TOOTH TALKS DENTAL CLINIC</h2>
+    <p class="animate__animated animate__fadeInDown">Healthy teeth conversations</p>
     <div class="button">
-      <a href="../php/login.php"> Get Started </a>
+      <a href="../php/login.php"> Book Now </a>
     </div>
   </section>
   <section class='services' id='services'>

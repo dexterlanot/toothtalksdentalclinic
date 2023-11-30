@@ -59,14 +59,15 @@ body {
     color: var(--black-light-color);
     padding-left: 30px;
     box-sizing: border-box;
-    transition: 0.4s ease;
+    transition: 0.2s ease;
     border-bottom: 3px solid var(--white);
 }
 
 .sidebar ul li a:hover {
+   padding-left: 40px;
    background-color: var(--bluegreen);
-    color: var(--white);
-    border-bottom: 3px solid var(--darkbluegreen);
+   color: var(--white);
+   border-bottom: 3px solid var(--darkbluegreen);
 }
 
 

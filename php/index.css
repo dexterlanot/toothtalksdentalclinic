@@ -9,7 +9,9 @@
   --red: #ff8080;
   --darkred: #b30000;
   --black-light-color: #707070;
-  --yellow: #FBDB65;
+  --yellow: #fbdb65;
+  --boxyellow: #ed9e37;
+  --blue: #0079bf;
 }
 
 * {
@@ -46,13 +48,17 @@ section {
   color: var(--bluegreen);
 }
 
-.appointment_title, .add_appointment_title {
+.appointment_title,
+.add_appointment_title,
+.transaction_title {
   display: flex;
   align-items: center;
   margin-top: 20px;
 }
 
-.appointment_title i, .add_appointment_title i {
+.appointment_title i,
+.add_appointment_title i,
+.transaction_title i {
   margin-left: 10px;
   padding: 5px 5px;
   border-radius: 20px;
@@ -64,15 +70,14 @@ section {
   font-size: 16px;
 }
 
-
-.appointment_title .text, .add_appointment_title .text {
+.appointment_title .text,
+.add_appointment_title .text,
+.transaction_title .text {
   font-size: 18px;
   font-weight: 500;
   margin-left: 10px;
   color: var(--black);
 }
-
-
 
 .appointment_section {
   display: flex;
@@ -91,6 +96,9 @@ section {
 table {
   width: 100%;
   border-collapse: collapse;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  overflow: hidden;
   margin-top: 20px;
 }
 
@@ -188,7 +196,6 @@ button.disabled {
   padding: 10px;
   border-radius: 4px;
   z-index: 0;
-
 }
 
 .pagination a {
@@ -206,7 +213,6 @@ button.disabled {
   color: white;
 }
 
-
 .button {
   margin: 15px 0;
 }
@@ -221,18 +227,176 @@ button.disabled {
   background-color: var(--bluegreen);
 }
 
-.edit-button, .delete-button {
+.edit-button,
+.delete-button {
   cursor: pointer;
   padding: 2px 8px;
   border: none;
   outline: none;
 }
-
+/* 
 .edit-button{
+  background-color: var(--yellow);
+} */
+
+.delete-button {
+  background-color: var(--red);
+}
+
+.transactions {
+  margin-top: 70px;
+  width: 96%;
+}
+
+/* Dentist */
+/* Dashboard */
+
+.main_content {
+  /* overflow: hidden; */
+  padding: 18px 0 0 30px;
+}
+
+.main_content header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0 1rem;
+  position: fixed;
+  width: 93%;
+  /* z-index: 100; */
+}
+
+.main_content header h1 {
+  margin-left: 15px;
+  color: var(--black-light-color);
+}
+
+.main_content .user-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.main_content .user-wrapper i {
+  margin-right: 0.5rem;
+  font-size: 30px;
+  color: var(--bluegreen);
+}
+
+.main_content .user-wrapper p {
+  /* display: inline-block; */
+  color: var(--darkgrey);
+  font-size: 12px;
+}
+
+main {
+  margin-top: 20px;
+  padding: 1rem 0;
+  width: 98%;
+  min-height: calc(100vh-30px);
+}
+
+main .cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+  margin-top: 1rem;
+}
+
+main .card-single {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #0b6078; */
+  padding: 1.2rem;
+  border-radius: 5px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+main .card-single.box1 {
+  background-color: var(--bluegreen);
+}
+
+main .card-single.box3 {
+  background-color: var(--red);
+}
+
+main .card-single.box2 {
+  background-color: var(--boxyellow);
+}
+
+main .card-single.box4 {
+  background-color: var(--blue);
+}
+
+main .card-single span {
+  font-size: 0.8rem;
+}
+
+main .card-single i {
+  font-size: 2rem;
+}
+
+.dashboard-charts {
+  margin: 0 25px 0 25px;
+  display: flex;
+  gap: 2rem; /* Adjust the gap as needed */
+}
+
+.chart {
+  border: 1px solid var(--lightgrey);
+  border-radius: 5px;
+  flex: 1; /* This ensures that both charts take equal width */
+}
+
+/* Adjust the width of individual charts if needed */
+#appointmentChart {
+  width: 100%;
+}
+
+#profitChart {
+  width: 100%;
+}
+
+.pending-table {
+  margin: 0 25px 0 25px;
+}
+
+.status-text {
+  padding: 2px 15px;
+  border-radius: 10px;
+}
+
+.status-text.pending {
   background-color: var(--yellow);
 }
 
-.delete-button {
-  margin-left: 5px;
+.status-text.completed {
+  background-color: var(--bluegreen);
+  color: var(--white);
+}
+
+.status-text.cancelled {
   background-color: var(--red);
+}
+
+.pagination-pending-table {
+  position: fixed;
+  bottom: 2%;
+  left: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 0;
+}
+
+.pagination-pending-table a {
+  font-size: 12px;
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 4px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.pagination-pending-table a.active {
+  background-color: var(--bluegreen);
+  color: white;
 }

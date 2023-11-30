@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Dentist login successful, set session and redirect to dentist dashboard
             session_start();
             $_SESSION["user_id"] = $row["DentistID"];
-            header("Location: dashboard_dentist.php");
+            header("Location: dashboard.php");
             exit();
         } else {
             // Dentist login failed
