@@ -400,3 +400,87 @@ main .card-single i {
   background-color: var(--bluegreen);
   color: white;
 }
+
+/* calendar */
+.calendar-section {
+  width: 100%;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar {
+  margin: 0 50px 0 50px;
+  display: flex;
+  flex-flow: column;
+  max-height: 100vh;
+  overflow-y: auto;
+  align-items: center;
+}
+
+.calendar .header .month-year {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--black-light-color);
+  padding: 2rem 0; /* Adjusted padding */
+  margin-top: 1rem;
+}
+
+.calendar .days {
+  display: flex;
+  flex-flow: wrap;
+  
+}
+
+.calendar .days .day_name {
+  width: 12.5%; /* Fixed width for 7 days */
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--bluegreen);
+}
+
+.calendar .days .day_num {
+  display: flex;
+  flex-flow: column;
+  width: 12.34%;
+  border: 1px solid var(--grey);
+  padding: 10px;
+  font-weight: 500;
+  color: var(--black-light-color);
+  cursor: pointer;
+  min-height: 40px; /* Adjusted min-height */
+}
+
+.calendar .days .day_num span {
+  display: inline-flex;
+  width: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--darkbluegreen);
+}
+
+
+.event-pending {
+  background-color: var(--boxyellow);
+  padding: 5px;
+  border-radius: 10px;
+  color: var(--white);
+  font-weight: 400;
+  font-size: 12px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-bottom: 2px;
+}
+
+.event-approved {
+  background-color: var(--bluegreen);
+  padding: 5px;
+  border-radius: 10px;
+  color: var(--white);
+  font-weight: 400;
+  font-size: 12px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-bottom: 2px;
+}

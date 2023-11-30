@@ -210,12 +210,19 @@ LIMIT $offset, $recordsPerPage";
             </table>
             <div class="pagination-pending-table">
                 <?php
-                // Calculate the total number of pages
-                $totalPages = ceil($result->num_rows / $recordsPerPage);
+                // Query to get the total count without LIMIT
+$countQuery = "SELECT COUNT(*) AS total FROM appointment WHERE DentistID = $user_id AND appointment.Status = 'Pending'";
+$countResult = $db->query($countQuery);
+$countRow = $countResult->fetch_assoc();
+$totalRows = $countRow['total'];
+
+// Calculate the total number of pages
+$totalPages = ceil($totalRows / $recordsPerPage);
+
 
                 // Display page numbers
                 for ($i = 1; $i <= $totalPages; $i++) {
-                    echo "<a href='your_page.php?page=$i'";
+                    echo "<a href='dashboard.php?page=$i'";
                     if ($i == $page) {
                         echo " class='active'";
                     }

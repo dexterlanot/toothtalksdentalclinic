@@ -34,7 +34,7 @@ CREATE TABLE `appointment` (
   `TreatmentType` varchar(255) DEFAULT NULL,
   `Date` date DEFAULT NULL,
   `Time` time DEFAULT NULL,
-  `Status` enum('Pending','Completed','Cancelled') DEFAULT 'Pending'
+  `Status` enum('Pending','Completed','Approved','Cancelled') DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
