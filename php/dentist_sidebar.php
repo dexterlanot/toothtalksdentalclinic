@@ -45,8 +45,8 @@
             <li><a href="dashboard.php"><i class="uil uil-apps"></i></i> Overview </a></li>
             <li><a href="patient-table.php"><i class="uil uil-users-alt"></i> Patients </a></li>
             <li><a href="Calendar.php"><i class="uil uil-calendar-alt"></i> Calendar </a></li>
-            <li><a href=""><i class="uil uil-list-ul"></i> Appointments </a></li>
-            <li><a href=""><i class="uil uil-transaction"></i> Transactions </a></li>
+            <li><a href="appointment.php"><i class="uil uil-list-ul"></i> Appointments </a></li>
+            <li><a href="transaction_table.php"><i class="uil uil-transaction"></i> Transactions </a></li>
             <!-- <li><a href=""><i class="uil uil-transaction"></i> Transaction </a></li> -->
             <li><a href="logout.php"><i class="uil uil-signout"></i> Logout </a></li>
         </ul>

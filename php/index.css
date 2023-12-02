@@ -12,6 +12,7 @@
   --yellow: #fbdb65;
   --boxyellow: #ed9e37;
   --blue: #0079bf;
+  --green: #50C878;
 }
 
 * {
@@ -132,6 +133,36 @@ th {
   flex: 1;
 }
 
+.input-box-profile {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 15px;
+}
+
+.input-box-profile label {
+  padding-bottom: 5px;
+  width: 95%;
+  color: var(--black);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.input-box-profile input {
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid var(--black-light-color);
+}
+
+.input-box-profile select {
+  height: 40px;
+  width: 93.5%;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid var(--black-light-color);
+}
+
 .input-box {
   display: flex;
   flex-wrap: wrap;
@@ -168,6 +199,15 @@ th {
 }
 
 .date-time-container .input-box {
+  flex: 1;
+}
+
+.date-time-container {
+  display: flex;
+  gap: 5px;
+}
+
+.date-time-container .input-box-profile {
   flex: 1;
 }
 
@@ -344,7 +384,7 @@ main .card-single i {
 .chart {
   border: 1px solid var(--lightgrey);
   border-radius: 5px;
-  flex: 1; /* This ensures that both charts take equal width */
+  flex: 1; 
 }
 
 /* Adjust the width of individual charts if needed */
@@ -475,7 +515,7 @@ main .card-single i {
 }
 
 .event-approved {
-  background-color: var(--bluegreen);
+  background-color: var(--green);
   padding: 5px;
   border-radius: 10px;
   color: var(--white);
@@ -484,3 +524,339 @@ main .card-single i {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin-bottom: 2px;
 }
+
+.event-completed {
+  color: var(--bluegreen);
+  font-weight: 400;
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+
+.month-year {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.month-year a {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 18px;
+  margin: 0 40px;
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: var(--bluegreen);
+  border-radius: 5px;
+}
+
+.month-year a:hover {
+  transition: all 0.2s ease;
+  background-color: var(--blue);
+}
+
+.patient-table {
+  width: 100%;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.patient-table h2 {
+  margin: 50px 100px 0 100px;
+  color: var(--black-light-color);
+}
+
+.patients {
+  margin: 0 100px 0 100px;
+  display: flex;
+  flex-flow: column;
+  max-height: 100vh;
+  overflow-y: auto;
+  align-items: center;
+}
+
+.view-button {
+  cursor: pointer;
+  padding: 2px 8px;
+  text-decoration: none; /* Remove underline */
+  color: var(--black); /* Use the color from the parent */
+  background-color: var(--yellow);
+}
+
+.view-button {
+  background-color: var(--yellow);
+}
+
+.view-button i {
+  margin-right: 2px;
+  font-size: 16px;
+}
+
+/* patient information update */
+.profile {
+  background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-pic {
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.profile-pic i {
+  padding: 10px 20px;
+  border-radius: 50%;
+  background-color: var(--lightgrey);
+  color: var(--darkgrey);
+  font-size: 80px;
+}
+
+
+.edit_patient_section {
+  width: 60%;
+}
+
+.edit_patient_section h2 {
+  text-align: center;
+  margin: 30px 0 0 0;
+  color: var(--black-light-color);
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.input-box-profile {
+  display: flex;
+  flex-wrap: wrap;
+  width: 45%;
+  padding-bottom: 15px;
+  margin-right: 20px;
+}
+
+.input-box-profile label {
+  padding: 2px;
+  width: 95%;
+  color: var(--black-light-color);
+  font-weight: 500;
+}
+
+.input-box-profile input {
+  height: 40px;
+  width: 95%;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid var(--black-light-color);
+}
+
+
+.gender-option {
+  color: var(--grey);
+  display: flex;
+  align-items: center;
+}
+
+.gender-option label {
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.gender-option input {
+  cursor: pointer;
+  margin-right: 5px; /* Add some spacing between radio buttons */
+}
+
+/* view patient card */
+.patient-information {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 80px 0 20px 0;
+  margin: auto auto;
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+}
+
+.records {
+  margin-top: 50px;
+}
+
+.patient-information h2 {
+  margin-bottom: 50px;
+  text-align: center;
+  padding: 20px 10px;
+  color: var(--white);
+  border-radius: 10px;
+  background-color: var(--bluegreen);
+  font-size: 24px;
+}
+
+.patient-information p {
+  padding: 0 20px;
+  color:  var(--black);
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.patient-information p span {
+  font-weight: 600;
+}
+
+
+.pagination-patient-table {
+  position: fixed;
+  bottom: 5%;
+  left: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 0;
+}
+
+.pagination-patient-table a {
+  font-size: 12px;
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 4px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.pagination-patient-table a.active {
+  background-color: var(--bluegreen);
+  color: white;
+}
+
+.pagination-transaction-table {
+  position: fixed;
+  bottom: 5%;
+  left: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 0;
+}
+
+.pagination-transaction-table a {
+  font-size: 12px;
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 4px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.pagination-transaction-table a.active {
+  background-color: var(--bluegreen);
+  color: white;
+}
+
+.approve-button {
+  cursor: pointer;
+  padding: 2px 5px;
+  text-decoration: none; /* Remove underline */
+  color: var(--white); /* Use the color from the parent */
+  background-color: var(--green);
+}
+
+.approve-button i {
+  margin-right: 2px;
+  font-size: 16px;
+}
+
+.decline-button {
+  cursor: pointer;
+  padding: 2px 8px;
+  text-decoration: none; /* Remove underline */
+  color: var(--white); /* Use the color from the parent */
+  background-color: var(--red);
+  margin-left: 5px;
+}
+
+.decline-button i {
+  margin-right: 2px;
+  font-size: 16px;
+}
+
+.make-payment-button {
+  cursor: pointer;
+  padding: 2px 8px;
+  text-decoration: none; /* Remove underline */
+  color: var(--black); /* Use the color from the parent */
+  background-color: var(--yellow);
+}
+
+.make-payment-button i {
+  margin-right: 2px;
+  font-size: 16px;
+}
+
+
+.update-button {
+  cursor: pointer;
+  padding: 2px 8px;
+  text-decoration: none; /* Remove underline */
+  color: var(--black); /* Use the color from the parent */
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.update-button i {
+  margin-right: 2px;
+  font-size: 16px;
+}
+
+
+.approve-button,
+.decline-button,
+.make-payment-button,
+.update-button {
+    display: inline-block;
+    border: none;
+    outline: none;
+}
+
+#paymentForm {
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 15px;
+}
+
+#paymentForm label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  font-size: 16px;
+}
+
+#paymentForm input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+#updateForm {
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 15px;
+}
+
+#updateForm label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  font-size: 16px;
+}
+
+#updateForm input, #updateForm select{
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+

@@ -156,7 +156,7 @@ $totalEarnings = calculateTotalEarnings($db, $_SESSION["user_id"]);
                 <canvas id="appointmentChart"></canvas>
             </div>
             <div class="chart">
-                <canvas id="profitChart"></canvas>
+            <canvas id="profitChart"></canvas>
             </div>
         </div>
         <div class="pending-table">
@@ -181,55 +181,75 @@ $totalEarnings = calculateTotalEarnings($db, $_SESSION["user_id"]);
                     $offset = ($page - 1) * $recordsPerPage;
 
                     $sql = "SELECT 
-    CONCAT(patient.FirstName, ' ', patient.LastName) AS PatientName,
-    appointment.TreatmentType AS Treatment,
-    appointment.Date AS AppointmentDate,
-    TIME_FORMAT(appointment.Time, '%h:%i %p') AS AppointmentTime,
-    appointment.Status
-FROM patient
-JOIN appointment ON patient.PatientID = appointment.PatientID
-WHERE appointment.DentistID = $user_id AND appointment.Status = 'Pending'
-ORDER BY appointment.Date DESC, appointment.Time DESC
-LIMIT $offset, $recordsPerPage";
+        CONCAT(patient.FirstName, ' ', patient.LastName) AS PatientName,
+        appointment.TreatmentType AS Treatment,
+        appointment.Date AS AppointmentDate,
+        TIME_FORMAT(appointment.Time, '%h:%i %p') AS AppointmentTime,
+        appointment.Status
+    FROM patient
+    JOIN appointment ON patient.PatientID = appointment.PatientID
+    WHERE appointment.DentistID = $user_id AND appointment.Status = 'Pending'
+    ORDER BY appointment.Date DESC, appointment.Time DESC
+    LIMIT $offset, $recordsPerPage";
 
                     $result = $db->query($sql);
 
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row['PatientName'] . "</td>";
-                        echo "<td>" . $row['Treatment'] . "</td>";
-                        echo "<td>" . date("F j, Y", strtotime($row["AppointmentDate"])) . "</td>";
-                        echo "<td>" . date("h:i A", strtotime($row["AppointmentTime"])) . "</td>";
-                        $statusClass = strtolower($row['Status']);
-                        echo "<td><span class='status-text $statusClass'>" . $row['Status'] . "</span></td>";
-                        echo "</tr>";
+                    if ($result->num_rows > 0) {
+                        // Display the table if there are pending appointments
+                    ?>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Patient Name</th>
+                                    <th>Treatment</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row['PatientName'] . "</td>";
+                                    echo "<td>" . $row['Treatment'] . "</td>";
+                                    echo "<td>" . date("F j, Y", strtotime($row["AppointmentDate"])) . "</td>";
+                                    echo "<td>" . date("h:i A", strtotime($row["AppointmentTime"])) . "</td>";
+                                    $statusClass = strtolower($row['Status']);
+                                    echo "<td><span class='status-text $statusClass'>" . $row['Status'] . "</span></td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                        <div class="pagination-pending-table">
+                            <?php
+                            // Query to get the total count without LIMIT
+                            $countQuery = "SELECT COUNT(*) AS total FROM appointment WHERE DentistID = $user_id AND appointment.Status = 'Pending'";
+                            $countResult = $db->query($countQuery);
+                            $countRow = $countResult->fetch_assoc();
+                            $totalRows = $countRow['total'];
+
+                            // Calculate the total number of pages
+                            $totalPages = ceil($totalRows / $recordsPerPage);
+
+                            // Display page numbers
+                            for ($i = 1; $i <= $totalPages; $i++) {
+                                echo "<a href='dashboard.php?page=$i'";
+                                if ($i == $page) {
+                                    echo " class='active'";
+                                }
+                                echo ">$i</a>";
+                            }
+                            ?>
+                        </div>
+                    <?php
+                    } else {
+                        // Display a message if there are no pending appointments
+                        echo "<tr><td colspan='5'>No pending appointments found.</td></tr>";
                     }
                     ?>
-
-                </tbody>
-            </table>
-            <div class="pagination-pending-table">
-                <?php
-                // Query to get the total count without LIMIT
-$countQuery = "SELECT COUNT(*) AS total FROM appointment WHERE DentistID = $user_id AND appointment.Status = 'Pending'";
-$countResult = $db->query($countQuery);
-$countRow = $countResult->fetch_assoc();
-$totalRows = $countRow['total'];
-
-// Calculate the total number of pages
-$totalPages = ceil($totalRows / $recordsPerPage);
-
-
-                // Display page numbers
-                for ($i = 1; $i <= $totalPages; $i++) {
-                    echo "<a href='dashboard.php?page=$i'";
-                    if ($i == $page) {
-                        echo " class='active'";
-                    }
-                    echo ">$i</a>";
-                }
-                ?>
-            </div>
+        </div>
         </div>
 
     </section>
@@ -260,7 +280,7 @@ $totalPages = ceil($totalRows / $recordsPerPage);
             data: {
                 labels: months,
                 datasets: [{
-                    label: 'Completed Appointments',
+                    label: 'Completed Appointments by Months',
                     data: completedCounts,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
@@ -269,18 +289,23 @@ $totalPages = ceil($totalRows / $recordsPerPage);
             },
             options: {
                 scales: {
-                    y: {
+                    x: {
+                        indexAxis: 'x', // Use 'x' as index axis
+                        labels: months, // Set labels to months array
                         beginAtZero: true
+                    },
+                    y: {
+                        suggestedMin: 0, // Set the minimum value for the y-axis
+                        beginAtZero: false // Set to false to start from the specified minimum
                     }
                 }
             }
         });
     }
 
-    // Function to fetch profit data from the server
     function fetchProfitData(dentistID, callback) {
         $.ajax({
-            url: 'fetch_profit_data.php',
+            url: 'fetch_profit_data.php', // Update with the correct server-side script
             method: 'POST',
             data: {
                 dentistID: dentistID
@@ -292,15 +317,15 @@ $totalPages = ceil($totalRows / $recordsPerPage);
         });
     }
 
-    // Function to create Chart.js chart for total profit
+    // Function to create Chart.js chart for profit
     function createProfitChart(months, totalAmounts) {
         var ctx = document.getElementById('profitChart').getContext('2d');
         var chart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: months,
                 datasets: [{
-                    label: 'Total Profit',
+                    label: 'Total Earnings by Months',
                     data: totalAmounts,
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
@@ -309,16 +334,21 @@ $totalPages = ceil($totalRows / $recordsPerPage);
             },
             options: {
                 scales: {
-                    y: {
+                    x: {
+                        indexAxis: 'x',
+                        labels: months,
                         beginAtZero: true
+                    },
+                    y: {
+                        suggestedMin: 0,
+                        beginAtZero: false
                     }
                 }
             }
         });
     }
-
-    // Combined document ready function
-    $(document).ready(function() {
+// Combined document ready function
+$(document).ready(function() {
         var dentistID = <?php echo $_SESSION["user_id"]; ?>;
 
         // Fetch and create chart for completed appointments
@@ -332,7 +362,7 @@ $totalPages = ceil($totalRows / $recordsPerPage);
             createAppointmentChart(months, completedCounts);
         });
 
-        // Fetch and create chart for total profit
+        // Fetch and create chart for profit
         fetchProfitData(dentistID, function(data) {
             var months = data.map(function(item) {
                 return item.month;
@@ -342,5 +372,6 @@ $totalPages = ceil($totalRows / $recordsPerPage);
             });
             createProfitChart(months, totalAmounts);
         });
+
     });
 </script>

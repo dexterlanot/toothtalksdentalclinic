@@ -18,6 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = $_POST["password"];
   $confirm_password = $_POST["confirm_password"];
 
+  // Define an error variable
+  $error_message = "";
+
   // Password validation
   if ($password !== $confirm_password) {
     echo "Error: Passwords do not match.";
@@ -137,6 +140,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="input-box">
             <label for="confirm_password"> Conifrm Password </label>
             <input type="password" name="confirm_password" required>
+            <?php
+            if (!empty($error_message)) {
+                echo "<p class='error-message'>$error_message</p>";
+            }
+            ?>
           </div>
         </div>
         <div class="button">

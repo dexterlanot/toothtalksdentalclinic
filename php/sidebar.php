@@ -42,9 +42,9 @@ $result_patient_info = $db->query($sql_patient_info); // Change $conn to $db
     <div class="sidebar">
         <header><img src="../assets/client-logo.png" alt="Tooth Talks Dental Clinic"></header>
         <ul>
-            <li><a href=""><i class="uil uil-home"></i> Home </a></li>
+            <li><a href="patient_account.php"><i class="uil uil-home"></i> Home </a></li>
              
-            <!-- <li><a href=""><i class="uil uil-transaction"></i> Transaction </a></li> -->
+            <li><a href="patient-profile.php"><i class="uil uil-user-circle"></i></i> My Profile </a></li>
             <li><a href="logout.php"><i class="uil uil-signout"></i> Logout </a></li>
         </ul>
     </div>

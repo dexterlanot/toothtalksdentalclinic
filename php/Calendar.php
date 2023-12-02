@@ -22,10 +22,12 @@ class Calendar
         $this->active_day = $date != null ? date('d', strtotime($date)) : date('d');
     }
 
-    public function add_event($txt, $date, $days = 1, $color = '') {
+    public function add_event($txt, $date, $days = 1, $color = '')
+    {
         $color = $color ? ' ' . $color : $color;
         $this->events[] = [$txt, $date, $days, $color];
     }
+
     public function getPrevMonth()
     {
         return date('Y-m-d', strtotime('-1 month', strtotime($this->active_year . '-' . $this->active_month . '-01')));
@@ -39,27 +41,31 @@ class Calendar
     public function fetchAppointmentsFromDatabase()
     {
         global $db;
-
+    
         // Fetch appointments from the database and return as JSON
         $appointments = [];
-
-        $sql_fetch_appointments = "SELECT * FROM appointment WHERE DentistID = {$_SESSION['user_id']} AND (Status = 'Pending' OR Status = 'Approved')";
+    
+        $sql_fetch_appointments = "SELECT * FROM appointment WHERE DentistID = {$_SESSION['user_id']} AND (Status = 'Pending' OR Status = 'Approved' OR Status = 'Completed')";
         $result = $db->query($sql_fetch_appointments);
-
+    
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $appointments[] = array(
+                // Common fields for all statuses
+                $appointmentData = array(
                     'title' => $row['TreatmentType'],
                     'start' => $row['Date'] . 'T' . $row['Time'],
                     'end' => $row['Date'] . 'T' . $row['Time'],
-                    'color' => $row['Status'] == 'Pending' ? 'event-pending' : 'event-approved',
+                    'color' => $row['Status'] == 'Pending' ? 'event-pending' : ($row['Status'] == 'Completed' ? 'event-completed' : 'event-approved'),
                 );
+
+    
+                $appointments[] = $appointmentData;
             }
         }
-
+    
         return $appointments;
     }
-
+    
 
     public function __toString()
     {
@@ -70,7 +76,9 @@ class Calendar
         $html = '<div class="calendar">';
         $html .= '<div class="header">';
         $html .= '<div class="month-year">';
+        $html .= '<a href="?date=' . $this->getPrevMonth() . '"><i class="uil uil-angle-left"></i></a>';
         $html .= date('F Y', strtotime($this->active_year . '-' . $this->active_month . '-' . $this->active_day));
+        $html .= '<a href="?date=' . $this->getNextMonth() . '"><i class="uil uil-angle-right"></i></a>';
         $html .= '</div>';
         $html .= '</div>';
         $html .= '<div class="days">';
@@ -120,8 +128,11 @@ class Calendar
     }
 }
 
+// Get the date from the URL parameter
+$date = isset($_GET['date']) ? $_GET['date'] : null;
+
 // Instantiate the Calendar class
-$calendar = new Calendar();
+$calendar = new Calendar($date);
 
 // Fetch appointments from the database
 $appointments = $calendar->fetchAppointmentsFromDatabase();

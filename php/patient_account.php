@@ -22,7 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitAppointment"])) 
                                VALUES ($user_id, $dentist_id, '$treatment_type', '$date', '$time')";
 
     if ($db->query($sql_insert_appointment)) {
-        // Appointment added successfully
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
     } else {
         // Error inserting appointment
         echo "Error: " . $db->error;
@@ -37,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitAppointment"])) 
     <meta charset="UTF-8">
     <title>Patient Dashboard</title>
     <link rel="stylesheet" href="./index.css">
-
     <link rel="icon" type="image/x-icon" href="../assets/client-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitAppointment"])) 
                                     echo "<td>" . $row_appointment["Status"] . "</td>";
                                     echo "<td>";
 
-                                    if ($row_appointment["Status"] !== "Cancelled" && "Approved") {
+                                    if ($row_appointment["Status"] !== "Cancelled" && $row_appointment["Status"] !== "Approved" && $row_appointment["Status"] !== "Completed") {
                                         // Only show buttons if the status is not "Cancelled"
                                         // Inside the while loop where you display appointments
                                         // echo "<button class='edit-button' data-appointment-id='" . $row_appointment["AppointmentID"] . "' data-treatment-type='" . $row_appointment["TreatmentType"] . "' data-date='" . $row_appointment["Date"] . "' data-time='" . $row_appointment["Time"] . "'>Edit</button>";
